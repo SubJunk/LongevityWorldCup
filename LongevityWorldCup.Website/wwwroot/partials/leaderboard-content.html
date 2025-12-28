@@ -27,7 +27,7 @@
        3) Global layout / shell
        ========================= */
     .main-container{ display:flex; align-items:flex-start; }
-    .content{ flex-grow:1; transition:margin-left .3s ease; }
+    .content{ flex-grow:1; transition:margin-left .3s ease; width: 100%; }
 
     .leaderboard{
         display:flex; align-items:stretch; background-color:var(--card-bg);
@@ -35,29 +35,33 @@
     }
 
     /* Scope table styles to the leaderboard table only */
-    .leaderboard > table{ flex-grow:1; width:auto; border-collapse:separate; border-spacing:0; align-self:flex-start; }
+    .leaderboard > table{ width:100%; border-collapse:separate; border-spacing:0; }
 
     /* Scoped header styles – do NOT affect the modal info table */
     .leaderboard table th{
         padding:1rem 0; text-align:center; background-color:rgba(0,188,212,.1);
         color:var(--primary-color); font-weight:700; text-transform:uppercase; font-size:.9rem; letter-spacing:1px;
     }
-    .leaderboard table th:nth-child(2){ text-align:left; }
+    .leaderboard table th:nth-child(2){ max-width: 80px; text-align:left; }
+    .leaderboard table th:nth-child(3){ text-align: right; }
+    .leaderboard table th:nth-child(4){ max-width: 100px; }
+    .leaderboard table th:nth-child(5), .leaderboard table .media-contact-td{ max-width: 100px; text-align:center; }
     .leaderboard table tr:nth-child(even){ background-color:rgba(240,244,248,.5); }
 
     .leaderboard table tbody tr{ cursor:pointer; }
     .leaderboard table tbody tr:hover{ transform: scale(1.02); box-shadow:0 4px 10px rgba(0,0,0,.1); }
 
-    /* Let the Rank column auto-size (override old 15px rule) */
-    .leaderboard table th:nth-child(1){ width:auto; }
-
     /* Inner spacing: 17px left/right on all Rank cells while keeping text centered */
     .leaderboard table td.rank-td,
     .leaderboard table th:nth-child(1){
-        padding-left:17px;
-        padding-right:17px;
         text-align:center;
         white-space:nowrap;
+        width: 80px;
+    }
+    .leaderboard table td.athlete-portrait-td,
+    .leaderboard table th:nth-child(2){
+        text-align:left;
+        width: 90px;
     }
 
     /* =========================
@@ -148,7 +152,7 @@
         border-radius: 50%;
         object-fit: cover;
         border: 3px solid var(--secondary-color);
-        margin: .5rem 0;
+        margin: .4rem 0;
         cursor: pointer;
         transition: transform .3s ease;
     }
@@ -260,7 +264,7 @@
 
     .athlete-name{
         color:var(--primary-color); text-decoration:underline; text-align:left; cursor:pointer; transition:color .2s ease-in-out;
-        padding:.5rem .1rem .5rem 0; white-space:pre-wrap; overflow-wrap: break-word;
+        padding:.5rem .1rem .5rem 0; white-space:pre-wrap; overflow-wrap: break-word; float: left;
     }
     .athlete-name:hover{ color:var(--secondary-color); background-color:rgba(0,0,0,.05); border-radius:8px; font-size:1.1em; }
     .podium .athlete-name{ font-size:1.1rem; padding-bottom:.2rem; }
@@ -467,13 +471,21 @@
         .podium-item.third{ order:3; }
         .podium-rank{ left:5%; }
 
-        .leaderboard table{ width:100%; table-layout:fixed; }
+        /* .leaderboard table{ width:100%; table-layout:fixed; } */
         .leaderboard table td .badge-section{ display:none; }
         .leaderboard table th{ font-size:.6rem; }
         .leaderboard table td{ font-size:.8rem; }
 
         /* table portraits smaller on mobile */
         .leaderboard .portrait{ width:40px; height:40px; }
+        .leaderboard table td.athlete-portrait-td,
+        .leaderboard table th:nth-child(2){
+            text-align:left;
+            max-width: 60px;
+        }
+
+        .leaderboard table th:nth-child(4){ max-width: 60px; }
+        .leaderboard table th:nth-child(5), .leaderboard table .media-contact-td{ max-width: 60px; }
 
         /* =========================
            Athlete info table tweaks
